@@ -1,0 +1,5 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"   # 暴露acturator的所有端点
