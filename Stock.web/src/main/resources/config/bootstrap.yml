@@ -24,4 +24,7 @@ logging:
     org:
       hibernate:
         SQL: debug
-        type.descriptor.sql: true
+        type.descriptor.sql: trace
+    com:
+      gargoylesoftware:
+        htmlunit: fatal

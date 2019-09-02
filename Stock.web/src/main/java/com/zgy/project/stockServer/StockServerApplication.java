@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import java.util.logging.Level;
+
 @SpringBootApplication(scanBasePackages = "com.zgy.project")
 @EntityScan(basePackageClasses = {EntityConfig.class})
 public class StockServerApplication {
