@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="fileName" value="log.log"></property>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} [%blue(${PID})] [%yellow(%thread)] %-5level %logger{50} - %msg%n
+            </pattern>
+        </layout>
+        <target>System.err</target>
+    </appender>
+
+    <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>log/%d{yyyy-MM-dd-HH-mm}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>[%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <root level="info">
+        <appender-ref ref="STDOUT"></appender-ref>
+        <appender-ref ref="rollingFile"></appender-ref>
+    </root>
+    <logger name="timeBased" level="info">
+        <appender-ref ref="STDOUT"></appender-ref>
+        <appender-ref ref="rollingFile"></appender-ref>
+    </logger>
+    <logger name="com.zaxxer.hikari" level="debug" additivity="false">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+</configuration>

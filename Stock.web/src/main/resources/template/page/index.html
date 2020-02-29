@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../static/library/highchart/stock/highstock.js"></script>
+    <script src="../static/library/highchart/stock/indicators/indicators-all.js"></script>
+    <script src="../static/library/highchart/stock/indicators/rsi.js"></script>
+    <script src="../static/library/highchart/stock/indicators/ema.js"></script>
+    <script src="../static/library/highchart/stock/indicators/macd.js"></script>
+    <script src="../static/library/highchart/stock/modules/drag-panes.js"></script>
+    <script src="../static/library/highchart/stock/modules/annotations-advanced.js"></script>
+    <script src="../static/library/highchart/stock/modules/price-indicator.js"></script>
+    <script src="../static/library/highchart/stock/modules/full-screen.js"></script>
+    <script src="../static/library/highchart/stock/modules/stock-tools.js"></script>
+    <link rel="stylesheet" href="../static/library/highchart/stock/css/stocktools/gui.scss">
+    <link rel="stylesheet" href="../static/library/highchart/stock/css/annotations/popup.scss">
+
+</head>
+<body>
+    <h2>欢迎来到股票分析服务中心</h2>
+    <div id="container"></div>
+
+    <script type="module">
+        import G2 from '../static/library/antvis/g2/node_modules/@antv/g2';
+        const data = [
+            { genre: 'Sports', sold: 275 },
+            { genre: 'Strategy', sold: 1150 },
+            { genre: 'Action', sold: 120 },
+            { genre: 'Shooter', sold: 350 },
+            { genre: 'Other', sold: 150 },
+        ];
+
+        const chart = new G2.Chart({
+            container: 'container',
+            width: 500,
+            height: 500
+        });
+
+        chart.source(data);
+        chart.interval().position('genre*sold').color('genre');
+        chart.render();
+    </script>
+</body>
+</html>

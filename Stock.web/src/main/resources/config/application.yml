@@ -1,5 +1,42 @@
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"   # 暴露acturator的所有端点
+server:
+  port: 7071
+logging:
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+  file:
+    path: "./logs/"
+  file.max-size: 10MB
+  level:
+    com:
+      gargoylesoftware:
+        htmlunit: fatal
+      zaxxer:
+        hikari: debug
+      sun:
+        security: off
+    org.hibernate.SQL: debug
+    org.hibernate.type.description.sql: TRACE
+spring:
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    open-in-view: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/stock_last?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: root
+    password: TonFun!!
+    driver-class-name: com.mysql.jdbc.Driver
+    max-idle: 5
+    max-wait: 10000
+    min-idle: 2
+    initial-size: 2
+    validation-query: SELECT 1
+    test-on-borrow: false
+    test-while-idle: true
+    time-between-eviction-runs-millis: 18800
